@@ -1,0 +1,53 @@
+?php
+$play_count = 0;
+$correct_guesses = 0;
+$guess_high = 0;
+$guess_low = 0;
+
+echo "Dobrodošli u igru pogađanja broja! Program će generirati neki broj između broja 1 i broja 10, a na vama je da okušate svoju sreću i pogodite o kojem se to broju radi. \nSretno";
+echo "\n";
+echo "\n";
+
+
+function guessNumber()
+{
+  global $play_count, $correct_guesses, $guess_high, $guess_low, $correctPerc;
+  $play_count++;
+  $rand_number = rand(1,10);
+
+  echo "\nPogodi koji je to broj\n";
+  $answer = readline(">>>");
+  $answer = intval($answer);
+
+  echo "\nOvo je runda broj ${play_count}\nPogođeni broj iznosi: ${answer}\nRandom broj iznosi: ${rand_number}";
+
+  //checkira jel tocan 
+  if($answer === $rand_number ){
+    $correct_guesses++;
+  }if($answer > $rand_number){
+    $guess_high++;
+  }if($answer < $rand_number){
+    $guess_low++;
+  }
+  $correctPerc = round(($correct_guesses / $play_count) *100,2);
+  echo "\nPostotak točnosti iznosi ${correctPerc} %";
+
+//chekira jel imao vise toplo ili hladno pokusaja
+    if($guess_high > $guess_low){
+      echo "\nKad si fulavao broj onda si imao tendenciju da pikiraš na veće brojeve";
+    }if($guess_high < $guess_low){
+      echo " \nKad si fulavao broj onda si imao tendenciju da pikiraš manje brojeve";
+    }
+}
+
+
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
+guessNumber();
